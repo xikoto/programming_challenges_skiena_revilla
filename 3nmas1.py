@@ -16,12 +16,18 @@ def exercise(i, j):
     n2 = max(i, j)
     result = 0
     for k in range(n1, n2 + 1):
-        result = max(algorithm(k), result)
+        if results.get(k):
+            result = max(results.get(k), result)
+        else:
+            new = algorithm(k)
+            results[k] = new
+            result = max(new, result)
     return result
 
 
 if __name__ == '__main__':
     final = ""
+    results = {}
     for lin in sys.stdin:
         lin = lin.rstrip('\n')
         if len(lin.split()) < 2:
