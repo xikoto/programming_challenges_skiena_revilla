@@ -1,5 +1,6 @@
 import sys
 
+
 def algorithm(n):
     count = 1
     while n > 1:
