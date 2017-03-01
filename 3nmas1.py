@@ -31,12 +31,8 @@ if __name__ == '__main__':
     results = {}
     for lin in sys.stdin:
         lin = lin.rstrip('\n')
-        if len(lin.split()) < 2:
-            i = int(lin.split()[0])
-            j = i
-        else:
-            i = int(lin.split()[0])
-            j = int(lin.split()[1])
+        i = int(lin.split()[0])
+        j = int(lin.split()[1])
         final += str(i) + ' ' + str(j) + ' ' + str(exercise(i, j)) + '\n'
     final = final[0:len(final) - 1]
     print(final)
