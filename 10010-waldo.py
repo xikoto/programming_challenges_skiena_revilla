@@ -76,20 +76,38 @@ if __name__ == '__main__':
                         flag = True
                         break
                     numLinea += 1
+
             if not flag:
                 numLinea = 1
-                for line in list_diag:
+                for line in list_diag[:columnas]:
                     pos = ''.join(line).find(''.join(word))
                     reverse_pos = ''.join(line).rfind(''.join(reverse_word))
                     if pos != -1:
-                        print(str((pos % lineas) + 1) + " " + str(numLinea + 1))
+                        print(str(lineas - pos) + " " + str(pos + 1))
                         flag = True
                         break
                     elif reverse_pos != -1:
-                        print(str((reverse_pos % lineas) + 1) + " " + str(numLinea + 1))
+                        print(str(lineas - reverse_pos) + " " + str(pos + 1))
                         flag = True
                         break
                     numLinea += 1
+
+                    #falta hallar la posición de la linea
+                if not flag:
+                    cont_algo = 1
+                    for line in list_diag[columnas:]:
+                        pos = ''.join(line).find(''.join(word))
+                        reverse_pos = ''.join(line).rfind(''.join(reverse_word))
+                        if pos != -1:
+                            print(str(numLinea - (pos + 1)) + " " + str(pos + columnas - len(line) + 1))
+                            flag = True
+                            break
+                        elif reverse_pos != -1:
+                            print(str(numLinea - (reverse_pos + 1)) + " " + str(reverse_pos + columnas - len(line) + 1))
+                            flag = True
+                            break
+                        cont_algo += 1
+
             if not flag:
                 numLinea = 1
 
@@ -113,11 +131,11 @@ if __name__ == '__main__':
                         pos = ''.join(line).find(''.join(word))
                         reverse_pos = ''.join(line).rfind(''.join(reverse_word))
                         if pos != -1:
-                            print(str(numLinea - pos) + " " + str(cont_column))
+                            print(str(numLinea - (pos + 1)) + " " + str(cont_column + 1))
                             flag = True
                             break
                         elif reverse_pos != -1:
-                            print(str(numLinea - reverse_pos) + " " + str(cont_column))
+                            print(str(numLinea - (reverse_pos + 1)) + " " + str(cont_column + 1))
                             flag = True
                             break
                         cont_column += 1
