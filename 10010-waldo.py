@@ -20,9 +20,11 @@ if __name__ == '__main__':
     for i in range(int(cases)):
         sys.stdin.readline()
         lineas, columnas = sys.stdin.readline().strip().split(" ")
+        lineas = int(lineas)
+        columnas = int(columnas)
         list_lines = []
 
-        for linea in range(int(lineas)):
+        for linea in range(lineas):
             list_lines.append(list(sys.stdin.readline().strip().lower()))
         words = sys.stdin.readline().strip()
 
@@ -33,9 +35,9 @@ if __name__ == '__main__':
 
         list_column = []
 
-        for column in range(int(columnas)):
+        for column in range(columnas):
             s = []
-            for linea in range(int(lineas)):
+            for linea in range(lineas):
                 s.append(list_lines[linea][column])
             list_column.append(s)
 
@@ -80,33 +82,44 @@ if __name__ == '__main__':
                     pos = ''.join(line).find(''.join(word))
                     reverse_pos = ''.join(line).rfind(''.join(reverse_word))
                     if pos != -1:
-                        print(str((pos % int(lineas)) + 1) + " " + str(numLinea+1))
+                        print(str((pos % lineas) + 1) + " " + str(numLinea + 1))
                         flag = True
                         break
                     elif reverse_pos != -1:
-                        print(str((reverse_pos % int(lineas)) + 1) + " " + str(numLinea+1))
+                        print(str((reverse_pos % lineas) + 1) + " " + str(numLinea + 1))
                         flag = True
                         break
                     numLinea += 1
             if not flag:
                 numLinea = 1
-                for line in list_antidiag:
+
+                for line in list_antidiag[:lineas]:
                     pos = ''.join(line).find(''.join(word))
                     reverse_pos = ''.join(line).rfind(''.join(reverse_word))
                     if pos != -1:
-                        print(list_antidiag)
-                        print(line)
-                        print(word)
-                        print(str(numLinea) + " " + str((pos % int(lineas)) + 1))
+                        print(str(numLinea - pos) + " " + str(pos + 1))
                         flag = True
                         break
                     elif reverse_pos != -1:
-                        print(list_antidiag)
-                        print(line)
-                        print(reverse_word)
-                        print(str(numLinea) + " " + str((reverse_pos % int(lineas)) + 1))
+                        print(str(numLinea - reverse_pos) + " " + str(reverse_pos + 1))
                         flag = True
                         break
                     numLinea += 1
+
+                if not flag:
+
+                    cont_column = 1
+                    for line in list_antidiag[lineas:]:
+                        pos = ''.join(line).find(''.join(word))
+                        reverse_pos = ''.join(line).rfind(''.join(reverse_word))
+                        if pos != -1:
+                            print(str(numLinea - pos) + " " + str(cont_column))
+                            flag = True
+                            break
+                        elif reverse_pos != -1:
+                            print(str(numLinea - reverse_pos) + " " + str(cont_column))
+                            flag = True
+                            break
+                        cont_column += 1
 
         print()
