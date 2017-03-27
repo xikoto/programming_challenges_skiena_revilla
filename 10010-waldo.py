@@ -20,7 +20,6 @@ if __name__ == '__main__':
         for word in range(numWords):
             list_words.append(list(sys.stdin.readline().strip().lower()))
 
-        
         for word in list_words:
 
             palEncont = False
@@ -134,8 +133,7 @@ if __name__ == '__main__':
                             print( "" + str(fila+1) + " " + str(colum+1) )
                             palEncont = True
                             break
-                            
-                            
+
                         #Centro -> Arriba-Derecha
                         cont = 0
                         punt = 0
@@ -157,11 +155,6 @@ if __name__ == '__main__':
                 
                 if palEncont:
                     break;
-                            
-                        
-        
-        
-    
 
         if i < int(cases)-1:
             print()
