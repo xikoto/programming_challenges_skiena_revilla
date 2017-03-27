@@ -11,7 +11,6 @@ if __name__ == '__main__':
 
         pos = int(nCasas/2)
 
-        
         casaVito = casas[pos]
         
         suma = 0
